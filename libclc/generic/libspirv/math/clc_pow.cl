@@ -408,3 +408,15 @@ _CLC_DEF _CLC_OVERLOAD half __clc_pow(half x, half y) {
 
 _CLC_BINARY_VECTORIZE(_CLC_DEF _CLC_OVERLOAD, half, __clc_pow, half, half)
 #endif
+
+#ifdef cl_khr_fp16
+
+#pragma OPENCL EXTENSION cl_khr_fp16 : enable
+
+_CLC_OVERLOAD _CLC_DEF half __clc_pown(half x, int y) {
+    return (half)__clc_pown((float)x, y);
+}
+
+_CLC_BINARY_VECTORIZE(_CLC_OVERLOAD _CLC_DEF, half, __clc_pown, half, int);
+
+#endif
